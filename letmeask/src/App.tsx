@@ -1,21 +1,18 @@
-import { ButtonWithProps } from "./components/example_components/Button_Props"
-import { ButtonWithStates } from "./components/example_components/Button_States"
+import { BrowserRouter, Route } from 'react-router-dom';
+
+import { Home } from './pages/Home';
+import { NewRoom } from './pages/NewRoom';
+
+import { AuthContextProvider } from './contexts/AuthContext'
 
 function App() {
   return (
-    <div>
-      {/* Com children */}
-      <ButtonWithProps>Com children</ButtonWithProps>
-
-      {/* Sem children */}
-      <ButtonWithProps text="Sem children" />
-
-      <ButtonWithProps />
-
-      <br></br>
-
-      <ButtonWithStates />
-    </div>
+    <BrowserRouter>
+      <AuthContextProvider>
+        <Route path="/" exact component={Home} />
+        <Route path="/rooms/new" component={NewRoom} />
+      </AuthContextProvider>
+    </BrowserRouter>
   );
 }
 
