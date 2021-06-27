@@ -2,10 +2,17 @@ import { ButtonHTMLAttributes } from "react"
 
 import '../styles/button.scss'
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+// & comercial dizendo que posso passar mais de um tipo para props type
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  isOutlined?: boolean
+};
 
-export function Button(props: ButtonProps) {
+// sentado false como default, caso outlined não seja passado como parametro
+export function Button({ isOutlined = false, ...props }: ButtonProps) {
   return (
-    <button className="button" {...props} />
+    <button
+      className={`button ${isOutlined ? 'outlined' : ''}`}
+      {...props}
+    />
   )
 }
